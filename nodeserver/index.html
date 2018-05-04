@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>React Native Socket IO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/socket.io/socket.io.js"></script>
+    
+</head>
+<body>
+    <h1>Welcome Server</h1>
+    <br>
+    <button>Update</button>
+    <script>
+        var socket = io();
+        var button =  document.querySelector('button');
+        button.onclick = function(){
+            console.log('work');
+            socket.emit('update', {'id':1, 'name':Math.random().toString(36).substr(2, 5)+" from server"});
+        }
+        socket.on('client', (data)=>{
+            console.log('updated from client');
+        })
+    </script>
+</body>
+</html>
